@@ -3,6 +3,10 @@ name = "aotp-tool"
 version = "0.1.0"
 authors = ["Vincent Hanquez <vincent@coretype.io>"]
 edition = "2018"
+license = "MIT/Apache-2.0"
+description = "Another OTP set of tools (QR code parsing)"
+keywords = ["QR", "OTP", "TOTP"]
+categories = [ "tool" ]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
