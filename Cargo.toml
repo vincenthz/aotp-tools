@@ -1,0 +1,25 @@
+[package]
+name = "aotp-tool"
+version = "0.1.0"
+authors = ["Vincent Hanquez <vincent@coretype.io>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bardecoder = "0.3"
+image = "0.23"
+url = "2"
+base64 = "0.13"
+base32 = "0.4"
+prost = "0.10"
+prost-types = "0.10"
+bytes = "1"
+thiserror = "1"
+anyhow = "1"
+clap = { version = "3", features = ["derive"] }
+failure = "0.1"
+aotp = { git = "https://github.com/vincenthz/aotp", version = "0.1" }
+
+[build-dependencies]
+prost-build = "0.10"
