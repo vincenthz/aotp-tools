@@ -4,8 +4,8 @@ use clap::{Parser, Subcommand};
 
 /// A fictional versioning CLI
 #[derive(Debug, Parser)]
-#[clap(name = "git")]
-#[clap(about = "A fictional versioning CLI", long_about = None)]
+#[clap(name = "aotp-tools")]
+#[clap(about = "Another OTP tools", long_about = None)]
 pub struct Args {
     #[clap(subcommand)]
     pub command: Commands,
