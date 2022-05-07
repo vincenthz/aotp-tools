@@ -17,6 +17,10 @@ pub enum Commands {
         // QR file to dump
         #[clap(parse(from_os_str))]
         path: PathBuf,
+        #[clap(long, short)]
+        debug: bool,
+        #[clap(long, short)]
+        url: bool,
     },
 }
 

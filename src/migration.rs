@@ -27,7 +27,6 @@ pub fn try_one(url: &Url) -> Result<Vec<MigrationPayload>, OtpMigrationError> {
     if url.scheme() != "otpauth-migration" {
         return Err(OtpMigrationError::InvalidScheme(url.scheme().to_string()));
     }
-
     let mut pairs = url.query_pairs();
     let mut found = Vec::new();
     while let Some(pair) = pairs.next() {
@@ -44,6 +43,24 @@ pub fn try_one(url: &Url) -> Result<Vec<MigrationPayload>, OtpMigrationError> {
         found.push(payload)
     }
     Ok(found)
+}
+
+pub fn to_url(payloads: &[MigrationPayload]) -> Url {
+    let mut url = Url::parse("otpauth-migration://offline").unwrap();
+    {
+        let mut url_pairs = url.query_pairs_mut();
+        url_pairs.clear();
+        for payload in payloads {
+            let payload_serialized = payload.encode_to_vec();
+            let value = base64::encode_config(
+                payload_serialized,
+                base64::Config::new(base64::CharacterSet::Standard, false),
+            );
+            url_pairs.append_pair("data", &value);
+        }
+        let _ = url_pairs.finish();
+    }
+    url
 }
 
 #[derive(Debug, Error)]
